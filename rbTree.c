@@ -420,11 +420,42 @@
 	}
 	
         //imprime os nos da arvore usando inOrder
-	void printRbTree(rbNode* root) {
+	void printRbTree(rbNode* root, int op) {
 		if (root == NULL) 
 			return;
 
-		printRbTree(root->esq);
-		printf("Chave: %d / Cor: %d\n\n", root->chave, root->cor);
-		printRbTree(root->dir);
+		if(op == 1){
+
+		   printf("Chave: %d / Cor: %d\n\n", root->chave, root->cor);
+		   printRbTree(root->esq,op);
+		   printRbTree(root->dir,op);
+		}
+
+		else if(op == 2){
+		   printRbTree(root->esq,op);
+		   printf("Chave: %d / Cor: %d\n\n", root->chave, root->cor);
+		   printRbTree(root->dir,op);
+		}
+		else
+	 	   printf("Opcao invalida, voltando ao menu...");
 	}
+
+	int altura(rbNode* atual){
+	   if(atual == NULL || (atual->esq == NULL && atual->dir == NULL))
+	      return 0;
+	   else{
+	      if(altura(atual->esq) > altura(atual->dir)){
+	         if(atual->cor == BLACK)
+		    return (1 + altura(atual->esq));
+		 else
+		    return (altura(atual->esq));
+	      }
+	      else{
+ 	         if(atual->cor == BLACK)
+		    return (1 + altura(atual->dir));
+		 else
+		    return(altura(atual->dir));
+	      }
+	   }
+	}
+

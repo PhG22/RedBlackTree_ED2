@@ -38,4 +38,6 @@ void inserir(rbNode** tree, rbNode* pPai, rbNode** root, int key);
 
 rbNode *buscar(rbNode* tree, int key);
 
-void printRbTree(rbNode* root);
+void printRbTree(rbNode* root, int op);
+
+int altura(rbNode* atual);
