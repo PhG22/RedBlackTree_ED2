@@ -11,7 +11,7 @@
         //funcao para retornar o no avo de um no qualquer
 	rbNode* avo(rbNode* tree) {
 		if ((tree != NULL) && (tree->pai != NULL))
-				return (tree->pai)->pai;
+			return (tree->pai)->pai;
 		else
 			return NULL;
 	}
@@ -201,11 +201,11 @@
 		rbNode* paiRmv = rmv->pai;
 
 		if(filhoEsq(rmv) == 1){
-			free(rmv);
 			rmv->pai->esq = NULL;
-		} else {
 			free(rmv);
+		} else {
 			rmv->pai->dir = NULL;
+			free(rmv);
 		}
 
 		if(paiRmv->esq == NULL){
@@ -285,11 +285,11 @@
 			} else {
 				if(rmv->cor == RED && rmv->dir == NULL && rmv->esq == NULL){
 					if(filhoEsq(rmv) == 1){
-						free(rmv);
 						rmv->pai->esq = NULL;
-					} else {
 						free(rmv);
+					} else {
 						rmv->pai->dir = NULL;
+						free(rmv);
 					}
 					return;
 				} else {
@@ -329,12 +329,12 @@
 		} else if (rmv->dir == NULL || rmv->esq == NULL){
 			if(rmv->dir != NULL){
 				rmv->chave = rmv->dir->chave;
-				free(rmv->dir);
 				rmv->dir = NULL;
+				free(rmv->dir);
 			} else {
 				rmv->chave = rmv->esq->chave;
-				free(rmv->esq);
 				rmv->esq = NULL;
+				free(rmv->esq);
 			}
 		} else {
 			rbNode** subst = maiorEsq(&(rmv->esq));
@@ -440,6 +440,7 @@
 	 	   printf("Opcao invalida, voltando ao menu...");
 	}
 
+        //funcao que calcula a altura da arvore recursivamente
 	int altura(rbNode* atual){
 	   if(atual == NULL || (atual->esq == NULL && atual->dir == NULL))
 	      return 0;

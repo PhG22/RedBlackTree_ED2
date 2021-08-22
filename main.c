@@ -7,11 +7,16 @@
 int main() {
     rbNode *arvore = NULL;
 
-    int op = -1, aux = 1, pOp = -1, n, rm;
+    int op = -1, aux = 1, pOp = -1, test = -1, n, rm;
+
+    //vetores para insercoes teste
+    int ex1[10] = {13,8,17,1,11,15,25,6,22,27};
+    int ex2[8] = {7,3,19,10,22,8,11,26};
+    int ex3[13] = {61,52,85,20,55,76,93,16,71,81,90,101,65};
     
 
     do {
-        printf("1) Inserir elemento.\n2) Remover elemento.\n3) Ver árvore.\n4) Ver Altura.\n5) Sair.\n\n");
+        printf("1) Inserir elemento.\n2) Remover elemento.\n3) Ver árvore.\n4) Ver Altura.\n5) Casos de Teste.\n6) Sair.\n\n");
         scanf("%d", &op);
 
         switch(op) {
@@ -42,11 +47,33 @@ int main() {
 		break;
 
             case 5:
+                  system("clear");
+		  printf("1) Caso de teste 1\n2) Caso de teste 2\n3) Caso de teste 3\n\n");
+		  printf("digite o caso desejado: ");
+		  scanf("%d",&test);
+
+		  if(test == 1){
+		     for(int i = 0; i < 10; i++)
+                        inserir(&arvore,NULL,&arvore,ex1[i]);
+		  }
+		  else if(test == 2){
+		     for(int i = 0; i < 8; i++)
+			inserir(&arvore,NULL,&arvore,ex2[i]);
+		  }
+		  else if(test == 3){
+		     for(int i = 0; i < 13; i++)
+			inserir(&arvore,NULL,&arvore,ex3[i]);
+		  }
+		  else
+		     printf("Opcao Invalida, retornando ao menu...");
+		  break;
+
+            case 6:
                 aux = 0;
                 break;
 
             default:
-                printf("Opção inválida.\n");
+                printf("Opcao invalida.\n");
         }
 
         printf("=======================================================\n");
